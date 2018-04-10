@@ -1,0 +1,84 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../css/shared-styles.html">
+
+<dom-module id="fb-timeline-header">
+
+
+  <!--my element template -->
+  <template>
+    <style include="shared-styles">
+        :host {
+          display: block;
+        }
+       .profiledetails{
+        background: white;
+        width: 63%;
+        font-size: x-small;
+        margin-left: 96px;
+       }
+    
+  
+      </style>
+      <iron-ajax
+              auto
+              url="http://jsonplaceholder.typicode.com/users?id=1"
+              handle-as="json"
+              last-response="{{ajaxResponse}}"
+              debounce-duration="300">
+      </iron-ajax>
+
+<div class="row">
+        <div class="hidden-xs col-sm-2 col-md-2"></div>
+        <div class="col-xs-12 col-sm-12 col-md-8">
+                <div class="profileimage">
+                        <img  alt="not found"
+                        src="src/images/User0Med.png" />
+                </div>
+            <div class="hidden-xs col-sm-2 col-md-2 headerLabel">
+                <template is="dom-repeat" items="[[ajaxResponse]]">
+                    <span>{{item.name}}</span>
+                </template>
+            </div>
+          <div class="row profiledetails">
+           
+            <div class="hidden-xs col-sm-2 col-md-2">
+              <img alt="not found"
+                   src="src/images/[1280x800]-Facebook-Full_0001s_0001s_0004s_0000_Timeline.png" />
+            </div>
+            <div class="hidden-xs col-sm-2 col-md-2">
+              <img alt="not found"
+                   src="src/images/[1280x800]-Facebook-Full_0001s_0001s_0003s_0000_About.png" />
+            </div>
+            <div class="hidden-xs col-sm-2 col-md-2">
+              <img alt="not found"
+                   src="src/images/[1280x800]-Facebook-Full_0001s_0001s_0002s_0001_Photos.png" />
+            </div>
+            <div class="hidden-xs col-sm-2 col-md-2">
+              <img alt="not found"
+                   src="src/images/[1280x800]-Facebook-Full_0001s_0001s_0001s_0001_Friends.png" />
+            </div>
+            <div class="hidden-xs col-sm-2 col-md-2">
+              <img alt="not found"
+                   src="src/images/[1280x800]-Facebook-Full_0001s_0001s_0000s_0001_More.png" />
+            </div>
+          </div>
+        </div>
+      
+  </template>
+
+
+  <script>
+    class FbTimelineHeader extends Polymer.Element {
+      static get is() { return 'fb-timeline-header'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: ''
+          }
+        };
+      }
+    }
+    window.customElements.define(FbTimelineHeader.is, FbTimelineHeader);
+  </script>
+</dom-module>

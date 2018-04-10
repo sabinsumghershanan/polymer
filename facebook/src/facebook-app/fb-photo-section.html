@@ -1,0 +1,62 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link rel="import" href="../../css/shared-styles.html">
+
+<dom-module id="fb-photo-section">
+    <template>
+        <style include="shared-styles">
+            .firstcol{
+                width:17% !important;
+            }
+        
+            .thirdcol{
+                width:44% !important;
+                padding-left: 10px;
+                margin-top: 17px;
+            }
+            .imageStyle {
+                display: inline-block;
+            }
+             
+        </style>
+        <iron-ajax
+            auto
+            url="[[_photoUrl]]"
+            handle-as="json"
+            last-response="{{_photoList}}">
+        </iron-ajax>
+     <div class="row">
+            <div class="firstcol">
+                </div>
+        <div class="secondcol"><strong>Photos </strong> <span>{{_photoList.length}}</span><br>
+        <paper-listbox class="listbox-style">
+            <template is="dom-repeat" items="{{_photoList}}" as="photo">
+                <div class="imageStyle"> <img class="solid-border" src="{{photo.imageurl}}" height="60" width="60" /></div>
+            </template>
+        </paper-listbox>
+       </div>
+        
+     </div>
+    </template>
+
+    <script>
+        class FbPhotoSection extends Polymer.Element {
+            static get is() {
+                return 'fb-photo-section';
+            }
+            static get properties() {
+                return {
+                   _photoList: {
+                        type: Array,
+                        value: []
+                    },
+                   _photoUrl: {
+                        type: String,
+                        value: '/data/photos.json'
+                    },
+                }
+            }
+        }
+        customElements.define(FbPhotoSection.is, FbPhotoSection);
+    </script>
+</dom-module>

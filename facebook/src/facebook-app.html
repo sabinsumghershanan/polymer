@@ -1,0 +1,54 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../css/shared-styles.html">
+<link rel="import" href="facebook-app/fb-header.html">
+<link rel="import" href="facebook-app/fb-profile-cover.html">
+<link rel="import" href="facebook-app/fb-timeline-header.html">
+<link rel="import" href="facebook-app/fb-about.html">
+<link rel="import" href="facebook-app/fb-photo-section.html">
+<dom-module id="facebook-app">
+  <template>
+      <style include="shared-styles">
+          :host {
+            display: block;
+          }
+        </style>
+         <div class="container-fluid">
+
+              <!--  fb header with details   -->
+              <fb-header></fb-header>
+          
+            <!-- profile cover components -->
+            <fb-profile-cover></fb-profile-cover>
+            <div></div>
+            <!-- fb time line header components call -->
+            <fb-timeline-header></fb-timeline-header>
+        
+            <!-- fb about components call -->
+            <fb-about></fb-about>
+        
+            <!-- fb photo section -->
+            <fb-photo-section></fb-photo-section>
+        </div>
+ 
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class FacebookApp extends Polymer.Element {
+      static get is() { return 'facebook-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'facebook-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(FacebookApp.is, FacebookApp);
+  </script>
+</dom-module>

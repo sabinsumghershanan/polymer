@@ -1,0 +1,262 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/iron-autogrow-textarea/iron-autogrow-textarea.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../css/shared-styles.html">
+<link rel="import" href="fb-post.html">
+
+
+<dom-module id="fb-about">
+
+
+  <!--my element template -->
+  <template>
+    <style include="shared-styles">
+        :host {
+          display: block;
+        }
+      .firstcol{
+          width:17%;
+      }
+      .postTop {
+        top: -26px;
+      }
+      .post-content {
+        border-width: thin;
+        border: 1px solid #eae8e8;
+      }
+   
+      .thirdcol{
+          width:44%;
+          padding-left: 10px;
+          
+      }
+      textarea {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        width: 100%;
+    }
+
+      </style>
+      <iron-ajax
+              auto
+              id="myUserFetch"
+              url="http://jsonplaceholder.typicode.com/users?id=1"
+              handle-as="json"
+              last-response="{{ajaxResponse}}"
+              debounce-duration="300">
+      </iron-ajax>
+
+
+ <div class="row">
+     <div class="firstcol">
+     </div>
+
+     <div class="secondcol">
+
+        <div class="col-xs-12 col-md-12 col-sm-12">
+            <div>
+                <p class="study">About</p></span>
+            </div>
+        <hr>
+        <div> <iron-icon icon="book" class="glyphColor"></iron-icon>
+            <span><span class="margin"></span>
+            <p class="study">Studied Mechanical and Civil Engineering at</p></span>
+          <p class="university">McGill University</p>
+        </div>
+        <hr>
+        <div><iron-icon icon="home" class="glyphColor"></iron-icon>
+            <span><span class="margin"></span>
+            <p class="study">Lives in</p></span>
+          <p class="university">Amsterdam</p>
+        </div>
+        <hr>
+        <div><iron-icon icon="room" class="glyphColor"></iron-icon>
+            <span ><span class="margin"></span>
+            <p class="study">city</p></span>
+          <p class="university">
+              <template is="dom-repeat" items="[[ajaxResponse]]">
+                <span>{{item.address.city}}</span>
+              </template>
+          </p>
+        </div>
+        <hr>
+        <div> <iron-icon icon="favorite" class="glyphColor"></iron-icon>
+            <span ><span
+                    class="margin"></span>
+            <p class="study">In a relationship with</p></span>
+          <p class="university">Alison Loch</p>
+        </div>
+            <paper-listbox class="listbox-style">
+                <template is="dom-repeat" items="{{_photoList}}" as="photo">
+                    <div class="image-position"> <img class="solid-border" src="{{photo.imageurl}}" height="60" width="60" /></div>
+                </template>
+            </paper-listbox>
+      </div>
+         <hr>
+          <div class="row placesPanel">
+              <div class="col-xs-12 col-sm-4 col-md-12">
+                  <div class="abox2"><img src="images/[1280x800]-Facebook-Full_0003s_0000s_0003s_0000s_0000_Places.png"/></div>
+                  <div class="place row">
+                      <div class="col-xs-4 col-md-3"><img alt="not found" src="images/[1280x800]-Facebook-Full_0003s_0000s_0003s_0001s_0002_Ottawa-Map.png" /></div>
+                      <div class="col-xs-8 col-md-9">
+                          <div class="place-where">Heart and Crown Irish bar</div>
+                          <div class="university">with Alison Locker</div>
+                          <div class="university">about 3 months ago</div>
+                      </div>
+                  </div>
+                  <div class="place row">
+                      <div class="col-xs-4 col-md-3"><img alt="not found" src="images/[1280x800]-Facebook-Full_0003s_0000s_0003s_0002s_0002_Central-Park-Photo.png" /></div>
+                      <div class="col-xs-8 col-md-9">
+                          <div class="place-where">Heart and Crown Irish bar</div>
+                          <div class="university">with Alison Locker</div>
+                          <div class="university">about 3 months ago</div>
+                      </div>
+                  </div>
+                  <div class="place row">
+                      <div class="col-xs-4 col-md-3"><img alt="not found" src="images/[1280x800]-Facebook-Full_0003s_0000s_0003s_0003s_0002_Times-Square-Photo.png" /></div>
+                      <div class="col-xs-8 col-md-9">
+                          <div class="place-where">Heart and Crown Irish bar</div>
+                          <div class="university">with Alison Locker</div>
+                          <div class="university">about 3 months ago</div>
+                      </div>
+                  </div>
+                  <div class="place row">
+                      <div class="col-xs-4 col-md-3"><img alt="not found" src="images/[1280x800]-Facebook-Full_0003s_0000s_0003s_0004s_0002_Bahamas-Photo.png" /></div>
+                      <div class="col-xs-8 col-md-9">
+                          <div class="place-where">Heart and Crown Irish bar</div>
+                          <div class="university">with Alison Locker</div>
+                          <div class="university">about 3 months ago</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="thirdcol">
+
+        <!--<div class="well">
+          <iron-form id="form1">
+            <form action="/form/handler" method="get">
+             
+               &lt;!&ndash; <button class="btn btn-primary pull-right"  on-click="handleClick">Kick Me</button>&ndash;&gt;
+                <iron-autogrow-textarea  rows="4" value="{{value}}" id="a1"></iron-autogrow-textarea>
+            </form>
+              <paper-button class="btn btn-primary pull-right"  on-click="handleClick">Post</paper-button>
+          </iron-form>
+            <template>
+
+            </template>
+          &lt;!&ndash;<input type="button" value="Post" class="btn btn-primary pull-right" onClick="addContent(); localStorage.setItem('content', document.myForm.myContent.value, 7);"/>&ndash;&gt;
+          <ul class="list-inline"><li><a href="">
+                <iron-icon icon="cloud-upload"></iron-icon></a></li><li>
+            <a href=""><iron-icon icon="camera-enhance"></iron-icon></a>
+          </li><li><a href=""><iron-icon icon="room"></iron-icon></a></li></ul>
+            <div class="output"></div>
+        </div>
+        <div id="myDiv" class="panel panel-default" hidden="{{hide}}">{{value}}
+
+        </div>
+
+      </div>-->
+          <div class="well">
+              <h4>What's New</h4>
+              <div>
+                  <textarea class="panel-body" placeholder="What's in your mind ?" id="postbox" class="postboxc" type="text" rows="8" cols="50"></textarea>
+              </div>
+              <ul class="list-inline"><li><a href="">
+                  <iron-icon icon="cloud-upload"></iron-icon></a></li><li>
+                  <a href=""><iron-icon icon="camera-enhance"></iron-icon></a>
+              </li><li><a href=""><iron-icon icon="room"></iron-icon></a></li></ul>
+              <div class="test">
+                  <paper-button class="btn btn-primary pull-right postTop" raised on-click="_click">Post</paper-button>
+              </div>
+          </div>
+          <div id="posts" class="post-content">
+            </div>
+          <div class="panel panel-default">
+              <div class="panel-body">
+                <img class="image-size" src="src/images/User1Small.png" alt="no image found">
+                <p class="university">Leanne Graham</p> <p class="study">shared</p> <p class="university">oomf's photo</p>
+                <div class="clearfix"></div>
+                <hr>
+                <img class="imgWidth" src="/src/images/narcos2.jpg" alt="no image found">
+                <br>
+                <p class="university">[[_countLikes]]</p>
+                <paper-button class="university" on-click="clickLike" noink>Like</paper-button>&nbsp;&nbsp;
+                <paper-button class="university" on-click="clickComment" noink>Comment</paper-button>&nbsp;&nbsp;
+                <paper-button class="university" on-click="#" noink>Share</paper-button>
+              </div>
+              <form>
+                  <div class="input-group">
+                      <div class="input-group-btn">
+                          <img class="image-size" src="src/images/User0Cover.png" alt="no image found">
+                      </div>
+                      <input type="text" class="form-control comment-height" placeholder="write a comment">
+                  </div>
+              </form>
+          </div>
+
+ </div>
+
+  </template>
+  <script>
+    class FbAbout extends Polymer.GestureEventListeners(Polymer.Element) {
+      static get is() {
+      return 'fb-about';
+      }
+
+      ready() {
+        this.set('hide', true);
+        super.ready();
+        this._countLikes = 0;
+      }
+
+       _onClick(event) {
+          this.addContent();
+      }
+
+      static get properties() {
+        return {
+          json: {
+          type: String,
+          computed: 'JSON.stringify(obj)'
+          },
+          _showOrHide: {
+            type: String,
+            value: 'hide',
+            default: 'hide'
+        }, 
+        _countLikes:{
+            type: Number,
+            value: 0,
+        },
+
+        };
+      }
+      _click(event) {
+        let postText = Polymer.dom(this.root).querySelector("#postbox").value;
+        var newPostElement = document.createElement('fb-post');
+        newPostElement.setAttribute("post-author", "Leanne Graham ");
+        newPostElement.setAttribute("post-content", postText);
+        Polymer.dom(this.root).querySelector("#postbox").value = "";
+        Polymer.dom(this.$.posts).appendChild(newPostElement);
+      }
+      
+      clickLike() {
+        this._countLikes = this._countLikes + 1;
+      }
+
+
+    }
+    window.customElements.define(FbAbout.is, FbAbout);
+  </script>
+</dom-module>
+<fb-about></fb-about>

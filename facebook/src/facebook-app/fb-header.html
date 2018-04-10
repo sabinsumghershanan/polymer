@@ -1,0 +1,74 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../css/shared-styles.html">
+
+<dom-module id="fb-header">
+
+
+  <!--my element template -->
+  <template>
+    <style include="shared-styles">
+        :host {
+          display: block;
+        }
+       
+  
+      </style>
+
+<div class="row header">
+        <div class="col-xs-1 col-sm-1 col-md-1"></div>
+        <div class="col-xs-1 col-sm-1 col-md-1">
+          <img alt="not found"
+               src="/images/[1280x800]-Facebook-Full_0000s_0000s_0000_Facebook-Icon.png" />
+        </div>
+        <div class="hidden-xs col-sm-2 col-md-2 headerLabel">
+          <span data-modaltxt="name"></span>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-4"></div>
+        <div class="col-xs-8 col-sm-8 col-md-3">
+          <div class="row">
+            <div class="hidden-xs hidden-md col-md-2">
+              <img alt="not found"
+                   src="/images/[1280x800]-Facebook-Full_0000s_0001s_0002_Notification.png">
+            </div>
+            <div class="hidden-xs hidden-md col-md-2">
+              <img alt="not found"
+                   src="/images/[1280x800]-Facebook-Full_0000s_0001s_0000_Friend-Requests-Icon.png">
+            </div>
+            <div class="col-xs-10	 hidden-md hidden-lg">
+              <input type="text" />
+            </div>
+            <div class="col-md-2 col-sm-2 col-md-2">
+              <img alt="not found"
+                   src="/images/[1280x800]-Facebook-Full_0000s_0001s_0001_Messages-Icon.png">
+            </div>
+            <div class="hidden-xs hidden-md col-md-2 headerLabel">Home</div>
+            <div class="hidden-xs hidden-md col-md-2">
+              <img alt="not found" class="headerImg" src="/images/User1Small.png"/>
+            </div>
+            <div class="hidden-xs hidden-md col-md-2">
+              <img alt="not found"
+                   src="/images/[1280x800]-Facebook-Full_0003s_0000s_0000s_0001s_0001s_0000_Graduated-Icon.png">
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1"></div>
+      </div>
+     
+  </template>
+
+
+  <script>
+    class FbHeader extends Polymer.Element {
+      static get is() { return 'fb-header'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: ''
+          }
+        };
+      }
+    }
+    window.customElements.define(FbHeader.is, FbHeader);
+  </script>
+</dom-module>

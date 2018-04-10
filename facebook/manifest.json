@@ -1,0 +1,7 @@
+{
+  "name": "facebook",
+  "short_name": "facebook",
+  "description": "app for facebook",
+  "start_url": "/",
+  "display": "standalone"
+}

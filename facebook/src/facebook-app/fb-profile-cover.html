@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../css/shared-styles.html">
+
+
+<dom-module id="fb-profile-cover">
+
+
+  <!--my element template -->
+  <template>
+    <style include="shared-styles">
+        :host {
+          display: block;
+        }
+        .fb-profile {
+            width:80%;
+            margin:0 auto;
+            margin-top:-21px;
+        }
+
+        .fb-profile img.fb-image-lg{
+            width: 100%;
+        }
+
+        .fb-image-profile {
+            margin: -180px 10px 0px 50px;
+            width: 20%;
+        }
+  
+      </style>
+
+     
+    <div class="row">
+        <div class="hidden-xs col-sm-2 col-md-2"></div>
+        <div class="col-xs-12 col-sm-12 col-md-8 profiledetails">
+          <img class="coverPhoto" alt="not found" src="src/images/User0Cover.png" />
+        </div>
+        <div class="hidden-xs hidden-md col-md-2"></div>
+      </div>
+  </template>
+
+
+  <script>
+    class FbProfileCover extends Polymer.Element {
+      static get is() { return 'fb-profile-cover'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: ''
+          }
+        };
+      }
+    }
+    window.customElements.define(FbProfileCover.is, FbProfileCover);
+  </script>
+</dom-module>

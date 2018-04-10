@@ -1,0 +1,82 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link rel="import" href="../../css/shared-styles.html">
+
+<dom-module id="fb-post">
+    <template>
+        <style include="shared-styles">
+              .classPost1{
+                margin: 10px;
+              }
+              .classPostContent {
+                padding: 10px;
+                clear: both;
+              }
+         </style>
+    <div>
+        <div class="classPost1">
+            <img src="/images/User1Small.png" class="icon">
+            <span class="university">[[postAuthor]]</span>
+        </div>
+        <div class="classPostContent">[[postContent]]</div>
+        <p class="university">[[_countLikes]]</p>
+        <paper-button class="university" on-click="clickLike" noink>Like</paper-button>&nbsp;&nbsp;
+        <paper-button class="university" on-click="clickComment" noink>Comment</paper-button>&nbsp;&nbsp;
+        <paper-button class="university" on-click="#" noink>Share</paper-button>
+        <template is="dom-if" if="[[_isComment]]">
+            <paper-input id="inputForComment"></paper-input><button on-click="postComment">Comment</button>
+            <template is="dom-repeat" items="[[_comments]]">
+                    <div><span>{{item}}</span></div>
+            </template>
+        </template>
+    </div>
+    </template>
+
+    <script>
+        class FBPost extends Polymer.Element {
+
+            ready() {
+                super.ready();
+                this._comments = [];
+                this._countLikes = 0;
+                }
+
+             static get is() {
+                return 'fb-post';
+            }
+            static get properties() {
+                return {
+                   postContent: String,
+                   postAuthor: String,
+                   _countLikes:{
+                       type: Number,
+                       value: 0,
+                },
+                _isComment:{
+                       type: Boolean,
+                       value: false,
+                },
+                _comments:{
+                    type: Array,
+                    value: [],
+                }
+              }
+            }
+
+            clickLike() {
+                this._countLikes = this._countLikes + 1;
+            }
+
+             clickComment() {
+                this._isComment = true;
+            }
+            postComment(){
+            this._comments.push(this.shadowRoot.querySelector('#inputForComment').value);
+            this.notifyPath("_comments", this._comments.slice());
+            this.shadowRoot.querySelector('#inputForComment').value = "";
+            }
+        }
+        customElements.define(FBPost.is, FBPost);
+    </script>
+</dom-module>
